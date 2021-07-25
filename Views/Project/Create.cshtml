@@ -1,0 +1,35 @@
+﻿@using GoldStandartTestProj.Models
+@model GoldStandartTestProj.Models.Project
+@{
+}
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" asp-controller="project">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Название проекта</label>
+                    <input type="text" asp-for="Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="StatusId" class="control-label">Статус проекта</label>
+                    <select asp-for="StatusId" asp-items="ViewBag.Statuses">@*<option value=""></option>*@</select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateStart" class="control-label">Дата начало проекта</label>
+                    <input type="text" asp-for="DateStart" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Описание</label>
+                    <input type="text" asp-for="Description" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserId" class="control-label">Админ проекта</label>
+                    <select asp-for="UserId" asp-items="ViewBag.ProjectAdmin">@*<option value=""></option>*@</select>
+                    <span asp-validation-for="User" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Добавить" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>

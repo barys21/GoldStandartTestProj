@@ -1,0 +1,66 @@
+﻿@model GoldStandartTestProj.Models.ToListViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<a asp-action="Create" asp-controller="Project">Добавить проект</a> |
+<a asp-action="Create" asp-controller="ProjectTask">Добавить задачу</a>
+<h4>Проекты</h4>
+<table class="table">
+    <tr>
+        <td>Проект</td>
+        <td>Статус</td>
+        <td>Дата начало</td>
+        <td>Дата конец</td>
+        <td>Админ проекта</td>
+
+        <td>Действие</td>
+    </tr>
+    @foreach (var item in Model.Projects)
+    {
+        <tr><td>@item.Name</td>
+            <td>@item.Status.Name</td>
+            <td>@item.DateStart</td>
+            <td>@item.DateEnd</td>
+            <td>@item.User.Email</td>
+            <td>
+               <a asp-action="Edit" asp-controller="Project" asp-route-id="@item.Id">Изменить</a> |
+               <a asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id">Удалить</a> |
+               <a asp-action="Index" asp-controller="ProjectTask" asp-route-id="@item.Id">Задачи</a>
+            </td>
+        </tr>        
+    }
+</table>
+
+
+<h4>Задачи</h4>
+<table class="table">
+    <tr>
+        <td>Проект</td>
+        <td>Статус</td>
+        <td>Дата начало</td>
+        <td>Дата конец</td>
+        <td>Разработчик проекта</td>
+        <td>Описание</td>
+        <td>Проект</td>
+        <td>Действие</td>
+    </tr>
+    @foreach (var item in Model.ProjectTasks)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Status.Name</td>
+            <td>@item.DateStart</td>
+            <td>@item.DateEnd</td>
+            <td>@item.User.Email</td>
+            <td>@item.Description</td>
+            <td>@item.Project.Name</td>
+            <td>
+                    <a asp-action="Edit" asp-controller="ProjectTask" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="Delete" asp-controller="ProjectTask" asp-route-id="@item.Id">Удалить</a> |
+                    <a asp-action="Index" asp-controller="Project" asp-route-id="@item.Id">Проект</a>
+                </td>
+        </tr>
+
+    }
+</table>
